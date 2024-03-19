@@ -1,8 +1,0 @@
-rooms:
-  msg: Welcome to the Reservations Hotels applications
-  mailDetails:
-    subject: Your Reservations is ready
-    port: '6400'
-    from: dev-inkwell@gmail.com
-    hostName: dev-inkwell@gmail.com
-  build-version: '1'
