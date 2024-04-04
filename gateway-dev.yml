@@ -4,7 +4,7 @@ server:
 eureka:
   client:
     registerWithEureka: false
-    fetchRegistry: true
+    fetchRegistry: false
     serviceURL:
       defaultZone: http://localhost:8761/eureka
 
@@ -16,10 +16,10 @@ spring:
           enabled: true
       routes:
         - id: player-api
-          uri: lb://PLAYER-API
+          uri: lb://player-api
           predicates:
             - Path=/player/v1/**
         - id: item-api
-          uri: lb://ITEM-API
+          uri: lb://item-api
           predicates:
             - Path=/item/v1/**
