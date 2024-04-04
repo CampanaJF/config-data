@@ -4,9 +4,6 @@ server:
 eureka:
   client:
     registerWithEureka: false
-    fetchRegistry: false
-    serviceURL:
-      defaultZone: http://localhost:8761/eureka
 
 spring:
   cloud:
