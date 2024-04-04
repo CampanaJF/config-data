@@ -1,6 +1,11 @@
 server:
   port: 8080
 
+eureka:
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+
 spring:
   cloud:
     gateway:
@@ -8,12 +13,11 @@ spring:
         locator:
           enabled: true
       routes:
-        - id: onboarding
-          uri: http://localhost:8081/
+        - id: player-api
+          uri: lb://PLAYER-API
           predicates:
-            - Path=/onboarding/v1/**
-
-#          filters:
-#            -
-
-
+            - Path=/player/v1/**
+        - id: item-api
+          uri: lb://ITEM-API
+          predicates:
+            - Path=/item/v1/**

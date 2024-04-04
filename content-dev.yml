@@ -1,2 +1,8 @@
+spring:
+  application:
+    name: content
+  profiles:
+    active: dev
+
 server:
   port: 8081
