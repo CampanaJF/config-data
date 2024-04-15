@@ -1,27 +1,55 @@
-server:
-  port: 8080
-  ssl:
-    key-store-password: mobywallet
-    key-store-type: PKCS12
-    key-store: classpath:keystore/mobywallet.p12
-    key-alias: mobywallet
-
-eureka:
-  client:
-    registerWithEureka: false
-
 spring:
   cloud:
     gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedHeaders: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - PATCH
+              - DELETE
       discovery:
         locator:
           enabled: true
+          lowerCaseServiceId: true
       routes:
-        - id: player-api
-          uri: lb://player-api
+        - id: hotels
+          uri: lb://hotels
           predicates:
-            - Path=/player/v1/**
-        - id: item-api
-          uri: lb://item-api
+            - Path=/hotels/**
+
+        - id: rooms
+          uri: lb://rooms
           predicates:
-            - Path=/item/v1/**
+            - Path=/rooms/**
+
+        - id: reservations
+          uri: lb://reservations
+          predicates:
+            - Path=/reservations/**
+
+info:
+  app:
+    name: gateway
+    description: gateway
+    version: 1.0.0
+
+management:
+  info:
+    env:
+      enabled: true
+  endpoint:
+    shutdown:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: 'info'
+
+endpoint:
+  shutdown:
+    enabled: true
